@@ -1,19 +1,16 @@
-using System;
-using System.Collections.Generic;
-using System.Reflection;
+﻿using System.Reflection;
 
 [Serializable]
 public class Number {
     public string expression;
     
-    public Number() { }
-    
+    private Number() { }
     public Number(string _expression) {
         expression = _expression;
     }
     
-    public double Eval<T>(T data) {
-        var expr = new ExpressionCalc(expression);
+    public double Eval<T>(T data){
+        var expr      = new ExpressionCalc(expression);
         var classType = typeof(T);
         
         object GetFieldObject(T item, string fieldName) {
@@ -40,7 +37,7 @@ public class Number {
         return expr.Eval();
     }
 
-    public void Eval_CustomMethod<T>(T item, Number num, string methodName) {
+    public void Eval_CustomMethod<T>(T item, Number num, string methodName){
         var method = item.GetType().GetMethod(methodName);
         if (method == null) {
             return;

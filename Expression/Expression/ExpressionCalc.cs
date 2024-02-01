@@ -1,8 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text.RegularExpressions;
-using UnityEngine;
+﻿using System.Text.RegularExpressions;
 
 public class ExpressionCalc {
     private string _expression;
@@ -18,7 +14,7 @@ public class ExpressionCalc {
                 if (methodNames.Any(a => a.Equals(match.Value)) == false) {
                     bindValues[match.Value] = 0;
                 }
-                match.NextMatch();
+                match = match.NextMatch();
             }
         }
     }
@@ -42,9 +38,6 @@ public class ExpressionCalc {
         var lowKey = key.ToLowerInvariant();
         if (bindValues.ContainsKey(lowKey)) {
             bindValues[lowKey] = value;
-        }
-        else {
-            Debug.LogError($"Not found bind key Expression : {Expression},  bindKey : {lowKey}");
         }
     }
 
